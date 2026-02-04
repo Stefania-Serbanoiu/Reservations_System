@@ -29,7 +29,6 @@ def ensure_interval(start_date_str: str, end_date_str: str):
 
 
 def overlaps_dates(a_start: str, a_end: str, b_start: str, b_end: str) -> bool:
-    # Interval inclusiv: [start_date, end_date]
     a_s = parse_date(a_start)
     a_e = parse_date(a_end)
     b_s = parse_date(b_start)
@@ -110,7 +109,7 @@ def availability(start_date: str, end_date: str, min_capacity: int | None):
 
 
 def occupancy_report(day: str):
-    parse_date(day)  # validează formatul
+    parse_date(day)  
 
     total_rooms = count_total_rooms()
     if total_rooms == 0:

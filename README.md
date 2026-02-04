@@ -17,20 +17,11 @@ py -m venv venv
 pip install -r requirements.txt
 ```
 
-4. Create a `.env` file like this and replace with a valid key :
-```
-OPENAI_API_KEY=sk-....
-```
-
+4. Create a `.env` file 
 
 5. Run backend:
 ```
 uvicorn backend.app:app --reload --port 8000
-```
-
-6. Run frontend: (streamlit UI):
-```
-streamlit run frontend/streamlit_app.py
 ```
 
 
@@ -44,9 +35,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 ### Run API
-uvicorn app:app --reload
+uvicorn main:app --reload
 
-### Use CLI (in another terminal)
+### Use CLI 
 python cli.py create-user alice
 python cli.py create-user admin --admin
 python cli.py list-users

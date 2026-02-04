@@ -24,8 +24,8 @@ class ResourceOut(BaseModel):
 class ReservationCreate(BaseModel):
     user_id: int
     resource_id: int
-    start_date: str   # "YYYY-MM-DD"
-    end_date: str     # "YYYY-MM-DD"
+    start_date: str   
+    end_date: str    
 
 class ReservationOut(BaseModel):
     id: int

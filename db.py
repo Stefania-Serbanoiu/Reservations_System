@@ -2,13 +2,16 @@ import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 
+
 DB_PATH = Path(__file__).with_name("reservations.db")
+
 
 def get_conn() -> sqlite3.Connection:
     conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON;")
     return conn
+
 
 @contextmanager
 def db_session():
@@ -21,6 +24,7 @@ def db_session():
         raise
     finally:
         conn.close()
+
 
 def init_db():
     with db_session() as conn:
@@ -35,7 +39,7 @@ def init_db():
             CREATE TABLE IF NOT EXISTS resources (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
-                type TEXT NOT NULL,               -- "room"
+                type TEXT NOT NULL,               
                 capacity INTEGER NOT NULL CHECK (capacity > 0)
             );
 
@@ -43,9 +47,9 @@ def init_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
                 resource_id INTEGER NOT NULL,
-                start_date TEXT NOT NULL,            -- "YYYY-MM-DD"
-                end_date TEXT NOT NULL,              -- "YYYY-MM-DD"
-                status TEXT NOT NULL DEFAULT 'ACTIVE',  -- ACTIVE/CANCELLED
+                start_date TEXT NOT NULL,           
+                end_date TEXT NOT NULL,            
+                status TEXT NOT NULL DEFAULT 'ACTIVE',  
                 created_at TEXT NOT NULL DEFAULT (date('now')),
                 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
                 FOREIGN KEY(resource_id) REFERENCES resources(id) ON DELETE CASCADE

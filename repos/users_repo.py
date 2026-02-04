@@ -31,7 +31,7 @@ def find_user_all():
         return [dict(r) for r in row]
 
 
-def find_user_by_id(user_id: int): # for admin checks
+def find_user_by_id(user_id: int): 
     with db_session() as conn:
         row = conn.execute(
             "SELECT id, username, is_admin FROM users WHERE id = ?",
